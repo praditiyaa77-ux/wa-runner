@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#101512">
+  <title>WA Number Runner</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">WA</div>
+    <div class="brand-copy"><strong>Number Runner</strong><span>Number workspace</span></div>
+    <span class="local-pill">LOCAL</span>
+  </header>
+
+  <main>
+    <section class="page active" id="page-dashboard">
+      <div class="page-heading"><div><p class="eyebrow">OVERVIEW</p><h1>Dashboard</h1></div><span class="status-dot">● Ready</span></div>
+      <div class="stats-grid">
+        <article class="stat-card"><span>Total nomor</span><strong id="totalCount">0</strong><small>Di daftar lokal</small></article>
+        <article class="stat-card"><span>Terverifikasi</span><strong class="green" id="verifiedCount">0</strong><small>Status manual</small></article>
+        <article class="stat-card"><span>Menunggu</span><strong id="pendingCount">0</strong><small>Belum diperiksa</small></article>
+        <article class="stat-card"><span>Perlu ditinjau</span><strong class="red" id="reviewCount">0</strong><small>Gagal / dibatasi</small></article>
+      </div>
+      <article class="panel">
+        <div class="panel-head"><div><p class="eyebrow">QUICK ACTION</p><h2>Kelola nomor</h2></div><span class="icon-box">＋</span></div>
+        <p class="muted">Tambahkan nomor sendiri atau nomor dari penyedia yang penggunaannya telah diizinkan.</p>
+        <button class="btn btn-primary full" data-page="numbers">Buka daftar nomor <span>→</span></button>
+      </article>
+      <article class="notice">
+        <strong>Catatan keamanan</strong>
+        <p>Aplikasi ini hanya membuka WhatsApp untuk tindakan manual dan menyimpan status yang kamu catat. Aplikasi tidak membaca OTP, mengotomatisasi login, atau melewati limit dan pemblokiran.</p>
+      </article>
+    </section>
+
+    <section class="page" id="page-numbers">
+      <div class="page-heading"><div><p class="eyebrow">WORKSPACE</p><h1>Number List</h1></div><span class="count-chip" id="listCount">0 nomor</span></div>
+      <div class="toolbar">
+        <input id="searchInput" class="search" placeholder="Cari nomor..." autocomplete="off">
+        <button class="btn btn-secondary" id="importBtn">Import</button>
+      </div>
+      <input type="file" id="fileInput" accept=".txt,.csv,text/plain,text/csv" hidden>
+      <div class="add-row">
+        <input id="numberInput" class="text-input" inputmode="tel" placeholder="Contoh: 628123456789">
+        <button class="btn btn-primary" id="addBtn">Tambah</button>
+      </div>
+      <p class="helper">Gunakan format internasional, misalnya 628xxxxxxxxxx. Baris duplikat akan dilewati.</p>
+      <div id="numberList" class="number-list"></div>
+      <div id="emptyState" class="empty-state"><div class="empty-icon">▤</div><strong>Belum ada nomor</strong><p>Tambah nomor secara manual atau import file TXT/CSV.</p></div>
+    </section>
+
+    <section class="page" id="page-history">
+      <div class="page-heading"><div><p class="eyebrow">ACTIVITY</p><h1>History</h1></div></div>
+      <div id="historyList" class="history-list"></div>
+      <div id="historyEmpty" class="empty-state"><div class="empty-icon">◷</div><strong>Belum ada aktivitas</strong><p>Perubahan status akan tercatat di sini.</p></div>
+    </section>
+
+    <section class="page" id="page-settings">
+      <div class="page-heading"><div><p class="eyebrow">PREFERENCES</p><h1>Settings</h1></div></div>
+      <article class="panel setting-row"><div><strong>Penyimpanan lokal</strong><p class="muted">Data disimpan di perangkat ini.</p></div><span class="tag">JSON</span></article>
+      <article class="panel">
+        <h2>Cadangkan data</h2><p class="muted">Ekspor daftar nomor dan riwayat sebagai file JSON.</p>
+        <button class="btn btn-secondary full" id="exportBtn">Ekspor cadangan JSON</button>
+      </article>
+      <article class="panel">
+        <h2>Hapus semua data</h2><p class="muted">Tindakan ini menghapus daftar dan riwayat lokal secara permanen.</p>
+        <button class="btn btn-danger full" id="clearBtn">Hapus seluruh data</button>
+      </article>
+      <p class="version">WA Number Runner · MVP 1.0.0</p>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <button class="nav-item selected" data-page="dashboard"><span>⌂</span><small>Home</small></button>
+    <button class="nav-item" data-page="numbers"><span>▤</span><small>Numbers</small></button>
+    <button class="nav-item" data-page="history"><span>◷</span><small>History</small></button>
+    <button class="nav-item" data-page="settings"><span>⚙</span><small>Settings</small></button>
+  </nav>
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
